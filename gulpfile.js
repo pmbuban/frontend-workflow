@@ -7,7 +7,8 @@ var gulp        = require('gulp'),
     gulpif      = require('gulp-if'),
     streamify   = require('gulp-streamify'),
     sass        = require('gulp-sass'),
-    connect  = require('gulp-connect');
+    connect     = require('gulp-connect'),
+    open        = require('gulp-open');
 
 //defaults to development if node variable isn't explicitly set
 //to set NODE_ENV use the following
@@ -62,6 +63,18 @@ gulp.task('connect', function(){
   });
 });
 
+
+gulp.task('url', function(){
+  var options={
+    url: "http://localhost:9001",
+    //'chrome' on windows
+    //'google-chrome' on linux
+    app: 'google chrome' //osx
+  };
+  gulp.src('./builds/development/index.html')
+    .pipe(open('', options));
+});
+
 //runs all tasks with command 'gulp'
-gulp.task('default', ['js', 'jade', 'sass', 'watch', 'connect']);
+gulp.task('default', ['js', 'jade', 'sass', 'watch', 'connect', 'url']);
 
