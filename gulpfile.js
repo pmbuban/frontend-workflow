@@ -67,9 +67,9 @@ gulp.task('connect', function(){
 gulp.task('url', function(){
   var options={
     url: "http://localhost:9001",
-    //'chrome' on windows
-    //'google-chrome' on linux
-    app: 'google chrome' //osx
+    //app: 'chrome' //on windows
+    //app: 'google-chrome' //on linux
+    app: 'google chrome' //on osx
   };
   gulp.src('./builds/development/index.html')
     .pipe(open('', options));
