@@ -5,5 +5,6 @@ sayHello();
 },{"./say-hello":2}],2:[function(require,module,exports){
 module.exports = function() {
   console.log('hello')
+  console.log('I just made a change to a js file!!')
 }
 },{}]},{},[1]);
