@@ -1,21 +1,15 @@
-## My personal GruntFile for front-end experiments.
+## My personal gulp setup for front-end experiments.
 
-### Instructions:
-
-#### clone the repo:
-```
-git clone https://github.com/anthdeldev/GruntFile
-```
+taken from http://maximilianschmitt.me/posts/gulp-js-tutorial-sass-browserify-jade/
 
 #### Install dependencies
 ```
-cd GruntFile
 npm install
 ```
 
 #### Run grunt
 ```
-grunt
+gulp
 ```
 
 #### A local server will auto open in your default browser
