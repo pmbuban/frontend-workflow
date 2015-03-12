@@ -6,8 +6,12 @@ taken from http://maximilianschmitt.me/posts/gulp-js-tutorial-sass-browserify-ja
 ```
 npm install
 ```
+Note: this if this requires sudo or root access, reclaim write permissions with the following
+```
+sudo chown -R $(whoami) ~/.npm
+```
 
-#### Run grunt
+#### Run gulp
 ```
 gulp
 ```
