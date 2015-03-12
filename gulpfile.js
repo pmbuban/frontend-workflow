@@ -8,7 +8,9 @@ var gulp        = require('gulp'),
     streamify   = require('gulp-streamify'),
     sass        = require('gulp-sass'),
     connect     = require('gulp-connect'),
-    open        = require('gulp-open');
+    open        = require('gulp-open'),
+    imagemin    = require('gulp-imagemin'),
+    pngquant    = require('imagemin-pngquant');
 
 //defaults to development if node variable isn't explicitly set
 //to set NODE_ENV use the following
@@ -30,7 +32,7 @@ gulp.task('js', function(){
   return b.add('./src/js/main', { debug:true === 'development' })
     .bundle()
     .pipe(source( outputDir + '/js/bundle.js'))
-    .pipe( gulpif(env === 'production', streamify(uglify())) )
+    .pipe(gulpif(env === 'production', streamify(uglify())))
     .pipe(gulp.dest('.'))
     .pipe(connect.reload());
 });
@@ -75,6 +77,19 @@ gulp.task('url', function(){
     .pipe(open('', options));
 });
 
+gulp.task('imagemin', function () {
+  return gulp.src('src/images/*')
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}],
+      use: [pngquant()]
+    }))
+    .pipe(gulp.dest(outputDir + '/images'));
+});
+gulp.task('copy', function(){
+  return gulp.src(['src/fonts/*'])
+    .pipe(gulp.dest(outputDir + '/fonts'));
+})
 //runs all tasks with command 'gulp'
-gulp.task('default', ['js', 'jade', 'sass', 'watch', 'connect', 'url']);
+gulp.task('default', ['js', 'jade', 'sass', 'watch', 'connect', 'url', 'imagemin', 'copy']);
 
